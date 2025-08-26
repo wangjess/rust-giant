@@ -1,0 +1,1 @@
+/home/birb/repos/rust_projects/rust-giant/restaurant/target/debug/librestaurant.rlib: /home/birb/repos/rust_projects/rust-giant/restaurant/src/front_of_house/hosting.rs /home/birb/repos/rust_projects/rust-giant/restaurant/src/front_of_house.rs /home/birb/repos/rust_projects/rust-giant/restaurant/src/lib.rs
