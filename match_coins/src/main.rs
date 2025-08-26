@@ -1,8 +1,17 @@
+#[derive(Debug)] // so we can inspect the state in a minute
+enum UsState {
+    Alabama,
+    Alaska,
+    // --snip--
+    Florida,
+    Michigan,
+}
+
 enum Coin {
     Penny,
     Nickel,
     Dime,
-    Quarter,
+    Quarter(UsState),
 }
 
 enum Message {
@@ -54,6 +63,16 @@ fn main() {
 
     // note: must convert Option<T> to a T value before you can perform T operations.
 
+    value_in_cents(Coin::Quarter(UsState::Alaska));
+    value_in_cents(Coin::Quarter(UsState::Florida));
+    value_in_cents(Coin::Quarter(UsState::Michigan));
+
+    let five = Some(5);
+    dbg!(five);
+    let six = plus_one(five);
+    dbg!(six);
+    let none = plus_one(None);
+    dbg!(none);
 }
 
 fn value_in_cents(coin: Coin) -> u8 {
@@ -64,6 +83,16 @@ fn value_in_cents(coin: Coin) -> u8 {
         }
         Coin::Nickel => 5,
         Coin::Dime => 10,
-        Coin::Quarter =>25,
+        Coin::Quarter(state) => {
+            println!("State quarter from {state:?}!");
+            25
+        },
+    }
+}
+
+fn plus_one(x: Option<i32>) -> Option<i32> {
+    match x {
+        None => None,
+        Some(i) => Some(i + 1),
     }
 }
