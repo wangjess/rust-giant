@@ -73,6 +73,30 @@ fn main() {
     dbg!(six);
     let none = plus_one(None);
     dbg!(none);
+
+    let dice_roll = 9;
+    match dice_roll {
+        3 => add_fancy_hat(),
+        7 => remove_fancy_hat(),
+        _ => reroll(),
+    }
+
+    // if let syntax 
+    let config_max = Some(3u8);
+    match config_max {
+        Some(max) => println!("The maximum is configured to be {max}"),
+        _ => (), // annoying, pointless boilerplate
+    }
+
+    // we could symplify the above match into:
+    if let Some(max) = config_max {
+        println!("The maximum is configured to be {max}");
+    }
+
+    // trade-offs:
+    // match exhaustively checks all options, ensures you don't forget any cases
+    // if let is syntax sugar for match that runs code when the value matches one pattern
+    // it will ignore all other values
 }
 
 fn value_in_cents(coin: Coin) -> u8 {
@@ -96,3 +120,7 @@ fn plus_one(x: Option<i32>) -> Option<i32> {
         Some(i) => Some(i + 1),
     }
 }
+
+fn add_fancy_hat() {}
+fn remove_fancy_hat() {}
+fn reroll() {}
